@@ -1,0 +1,66 @@
+server:
+  port: 8080
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: Review
+          uri: http://localhost:8081
+          predicates:
+            - Path=/reviews/** 
+        - id: Movie
+          uri: http://localhost:8082
+          predicates:
+            - Path=/movies/** 
+        - id: Notice
+          uri: http://localhost:8083
+          predicates:
+            - Path=/noticeSystems/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: Review
+          uri: http://Review:8080
+          predicates:
+            - Path=/reviews/** 
+        - id: Movie
+          uri: http://Movie:8080
+          predicates:
+            - Path=/movies/** 
+        - id: Notice
+          uri: http://Notice:8080
+          predicates:
+            - Path=/noticeSystems/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
