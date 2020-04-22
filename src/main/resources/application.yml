@@ -9,17 +9,17 @@ spring:
     gateway:
       routes:
         - id: Review
-          uri: http://localhost:8081
+          uri: http://localhost:8080
           predicates:
             - Path=/reviews/** 
         - id: Movie
-          uri: http://localhost:8082
+          uri: http://localhost:8080
           predicates:
             - Path=/movies/** 
         - id: Notice
-          uri: http://localhost:8083
+          uri: http://localhost:8080
           predicates:
-            - Path=/noticeSystems/** 
+            - Path=/notices/** 
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -50,7 +50,7 @@ spring:
         - id: Notice
           uri: http://Notice:8080
           predicates:
-            - Path=/noticeSystems/** 
+            - Path=/notices/** 
       globalcors:
         corsConfigurations:
           '[/**]':
